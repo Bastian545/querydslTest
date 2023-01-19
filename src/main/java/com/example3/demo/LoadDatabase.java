@@ -22,14 +22,19 @@ public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase (PersonRepo personRepo){
-        LocalDate localDate = LocalDate.of(2007,3,1);
 
+        personRepo.deleteAll();
+        LocalDate localDate = LocalDate.of(2007,3,1);
+        List<String> hobbies1  = List.of("futbol","natacion");
+        List<String> hobbies2  = List.of("futbol","tenis");
+        List<String> hobbies3  = List.of("tenis","canto");
+        List<String> hobbies4  = List.of("baile","actuacion");
 
         return args -> {
-            log.info("Preloading " + personRepo.save(new Person(localDate,"jason",20)));
-            log.info("Preloading " + personRepo.save(new Person(localDate,"jason",30)));
-            log.info("Preloading " + personRepo.save(new Person(localDate,"mason",45)));
-            log.info("Preloading " + personRepo.save(new Person(localDate,"lason",20)));
+            log.info("Preloading " + personRepo.save(new Person(localDate,"jason",20,hobbies1,"a")));
+            log.info("Preloading " + personRepo.save(new Person(localDate,"jason",30,hobbies2,"e")));
+            log.info("Preloading " + personRepo.save(new Person(localDate,"mason",45,hobbies3,"i")));
+            log.info("Preloading " + personRepo.save(new Person(localDate,"lason",20,hobbies4,"o")));
 
 
         };
